@@ -10,7 +10,11 @@ def saludo(): # Definimos la función que se ejecutará cuando se acceda a la ru
 def usuario(nombre): # Definimos la función que se ejecutará cuando se acceda a la ruta /usuario/<nombre>
     return jsonify({'mensaje': f'¡Hola, {nombre}!'}) # Devolvemos un mensaje personalizado con el nombre proporcionado en formato JSON
 
-
+@app.route('/suma', methods=['POST']) # Definimos una ruta para el endpoint /suma
+def suma():
+    datos = request.json # Obtenemos los datos enviados en formato JSON
+    resultado = datos['a'] + datos['b'] # Realizamos la suma de los dos números proporcionados
+    return jsonify({'resultado': resultado}) # Devolvemos el resultado de la suma en formato JSON
 
 
 if __name__ == '__main__': # Verificamos si el script se está ejecutando directamente
