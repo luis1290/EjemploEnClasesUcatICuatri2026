@@ -17,18 +17,3 @@ Route::get('/ping', function () {
 });
 
 
-/*
-|--------------------------------------------------------------------------
-| Grupo de rutas protegidas
-|--------------------------------------------------------------------------
-*/
-
-Route::middleware(['auth:sanctum'])->group(function () {
-
-    Route::get('/perfil', function () {
-        return response()->json([
-            'message' => 'Ruta protegida'
-        ]);
-    });
-
-});
