@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4"> <!-- Navbar para navegacion -->
+    <div class="container-fluid"> <!-- Contenedor fluido para la barra de navegación -->
+        <a class="navbar-brand" href="#">Mi Empresa</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navegación">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/employee/' %}active{% endif %}"
+                        href="{% url 'employee_list' %}">Empleados</a> <!-- Link a la lista de empleados -->
+                </li>
+                <!-- Enlace al listado de departamentos -->
+                <!-- Se aplica la clase 'active' si la URL actual es '/department/' o '/department/departments/' -->
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/department/' or request.path == '/department/departments/' %}active{% endif %}"
+                        href="{% url 'department_list' %}">Departamentos</a> <!-- Link a la lista de departamentos -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
