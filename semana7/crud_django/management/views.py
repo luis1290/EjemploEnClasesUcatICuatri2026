@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Employee, Department
 from .forms import EmployeeForm, DepartmentForm
+from django.contrib.auth.decorators import login_required # Importa el decorador de inicio de sesión requerido de Django
 
 # vista de empleados
+@login_required # protege la vista para que solo los usuarios autenticados puedan acceder a ella
 def employee_list(request): # listar los empleados
     employee = Employee.objects.select_related('department').all() # se utiliza select_related para optimizar la consulta y evitar consultas adicionales a la base de datos al acceder a los departamentos relacionados
     add_form = EmployeeForm()
@@ -32,6 +34,7 @@ def employee_delete(request, pk): # eliminar un empleado
     return render(request, 'management/employee_confirm_delete.html', {'employee': employee})
 
 # Vista para listar departamentos y mostrar formularios de agregar y editar
+@login_required
 def department_list(request):
     department = Department.objects.all() # Obtenemos todos los departamentos
     add_form = DepartmentForm() # Creamos una instancia del formulario para agregar departamentos

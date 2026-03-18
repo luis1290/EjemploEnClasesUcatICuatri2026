@@ -32,13 +32,19 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth', # Agrega la aplicación de autenticación de Django para manejar el registro, inicio de sesión y cierre de sesión de usuarios
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions', # Agrega la aplicación de sesiones de Django para manejar las sesiones de los usuarios autenticados
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'management'
+    'widget_tweaks',
+    'management',
 ]
+
+# agregar la configuración de autenticación
+LOGIN_URL = 'login' # URL a la que se redirige a los usuarios no autenticados
+LOGIN_REDIRECT_URL = 'employee_list' # URL a la que se redirige a los usuarios después de iniciar sesión
+LOGOUT_REDIRECT_URL = 'login' # URL a la que se redirige a los usuarios después de cerrar sesión
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -107,13 +113,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = True
+
+TIME_ZONE = 'America/Costa_Rica'
 
 
 # Static files (CSS, JavaScript, Images)

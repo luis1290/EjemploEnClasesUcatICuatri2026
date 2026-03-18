@@ -1,0 +1,59 @@
+{% load static %}
+{% load widget_tweaks %} <!-- Cargamos la etiqueta widget_tweaks para personalizar los formularios -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- icono de mostrar constraseña -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h2>Iniciar Sesión</h2>
+        <form method="post" class="mx-auto" style="max-width: 400px;">
+            {% csrf_token %} <!-- Agrega el token CSRF para proteger contra ataques CSRF -->
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+
+            <!-- manejo de error-->
+            {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                Porfavor, corrige los errores en el formulario.
+            </div>
+            {% endif %}
+        </form>
+        <p class="text-center mt-3">¿No tienes una cuenta? <a href="{% url 'register' %}">Regístrate aquí</a></p>
+    </div>
+
+    <!-- Script para mostrar/ocultar contraseña -->
+    <script>
+        function togglePassword(fieldId, btn) {
+            const input = document.getElementById(fieldId); // Obtiene el campo de entrada de contraseña por su ID
+            const icon = btn.querySelector('i'); // Obtenemos el ícono dentro del botón
+
+            if (input.type == "password") {
+                input.type = "text"; // Cambiamos el tipo a texto para mostrar la contraseña
+                icon.classList.remove('fa-eye'); // Cambiamos el ícono a "ojo abierto"
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = "password"; // Cambiamos el tipo a contraseña para ocultar la contraseña
+                icon.classList.remove('fa-eye-slash'); // Cambiamos el ícono a "ojo cerrado"
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+
+    <!-- Bootstrap Bundle JS (incluye Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
