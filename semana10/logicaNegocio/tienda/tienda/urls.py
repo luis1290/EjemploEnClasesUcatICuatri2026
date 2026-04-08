@@ -22,3 +22,4 @@ urlpatterns = [
     path('', include('pedidos.urls')),  # Incluimos las URLs de la aplicación 'pedidos' bajo el prefijo 'pedidos/', lo que significa que cualquier URL que comience con 'pedidos/' será manejada por las URLs definidas en el archivo pedidos/urls.py
 ]
 
+

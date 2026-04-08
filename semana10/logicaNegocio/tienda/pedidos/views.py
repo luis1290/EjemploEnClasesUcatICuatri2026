@@ -12,6 +12,9 @@ from .serializers import ItemSerializer
 
 
 # Create your views here.
+def index(request):
+    return render(request, "index.html")  # Renderiza la plantilla index.html cuando se accede a la vista index
+
 @api_view(["POST"])  # Decorador que indica que esta vista solo acepta solicitudes POST, lo que significa que se espera que el cliente envíe datos para crear un nuevo pedido
 def crear_pedido(request):
     serializer = ItemSerializer(data=request.data, many=True)
